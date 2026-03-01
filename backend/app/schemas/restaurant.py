@@ -11,6 +11,7 @@ class RestaurantUpdate(BaseModel):
     email: Optional[str] = None
     address: Optional[str] = None
     logo_url: Optional[str] = None
+    google_maps_url: Optional[str] = None
     settings: Optional[dict] = None
 
 
@@ -23,6 +24,7 @@ class RestaurantResponse(BaseModel):
     email: Optional[str] = None
     address: Optional[str] = None
     logo_url: Optional[str] = None
+    google_maps_url: Optional[str] = None
     is_active: bool
     created_at: datetime
 

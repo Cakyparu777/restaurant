@@ -18,11 +18,12 @@ export interface Restaurant {
     id: string;
     name: string;
     slug: string;
-    description: string | null;
-    phone: string | null;
-    email: string | null;
-    address: string | null;
-    logo_url: string | null;
+    description?: string;
+    phone?: string;
+    email?: string;
+    address?: string;
+    logo_url?: string;
+    google_maps_url?: string;
     is_active: boolean;
     created_at: string;
 }
@@ -65,6 +66,7 @@ export interface Table {
 export interface OrderItem {
     id: string;
     menu_item_id: string | null;
+    menu_item_name?: string;
     quantity: number;
     unit_price: number;
     subtotal: number;

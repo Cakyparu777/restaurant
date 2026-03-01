@@ -2,16 +2,23 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sess
 from sqlalchemy.orm import DeclarativeBase
 
 from app.config import get_settings
+from sqlalchemy import NullPool
+
+import uuid
 
 settings = get_settings()
 
+db_url = settings.DATABASE_URL
+# Automatically convert asyncpg urls to psycopg urls since psycopg 3 is required for Vercel/Supabase
+if db_url.startswith("postgresql+asyncpg://"):
+    db_url = db_url.replace("postgresql+asyncpg://", "postgresql+psycopg://")
+
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     echo=settings.DEBUG,
-    pool_size=20,
-    max_overflow=10,
-    pool_pre_ping=True,
+    poolclass=NullPool,
 )
+
 
 AsyncSessionLocal = async_sessionmaker(
     engine,

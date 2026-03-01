@@ -16,6 +16,7 @@ export default function SettingsPage() {
         phone: "",
         email: "",
         address: "",
+        google_maps_url: "",
     });
 
     useEffect(() => {
@@ -29,6 +30,7 @@ export default function SettingsPage() {
                     phone: r.phone || "",
                     email: r.email || "",
                     address: r.address || "",
+                    google_maps_url: r.google_maps_url || "",
                 });
             })
             .catch(() => { })
@@ -139,6 +141,22 @@ export default function SettingsPage() {
                             placeholder="123 Main Street, City"
                         />
                     </div>
+                    {/* 
+                    <div>
+                        <label className="block text-sm font-medium text-surface-700 mb-2">
+                            Google Maps Link <span className="text-surface-400 font-normal">(Optional)</span>
+                        </label>
+                        <input
+                            type="url"
+                            value={form.google_maps_url}
+                            onChange={(e) =>
+                                setForm((f) => ({ ...f, google_maps_url: e.target.value }))
+                            }
+                            className="input-field"
+                            placeholder="https://maps.app.goo.gl/..."
+                        />
+                    </div>
+                    */}
                 </div>
                 <button onClick={save} disabled={saving} className="btn-primary mt-6">
                     {saving ? "Saving..." : "Save Changes"}
@@ -183,6 +201,6 @@ export default function SettingsPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

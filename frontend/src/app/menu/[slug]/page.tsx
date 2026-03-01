@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "@/lib/api";
 import { PublicMenu, CartItem, MenuItem } from "@/lib/types";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
-export default function CustomerMenuPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = use(params);
+export default function CustomerMenuPage({ params }: { params: { slug: string } }) {
+    const { slug } = params;
     const searchParams = useSearchParams();
     const qrToken = searchParams.get("table");
 
@@ -172,6 +173,27 @@ export default function CustomerMenuPage({ params }: { params: Promise<{ slug: s
                     {data.restaurant.description && (
                         <p className="text-white/60 text-sm mt-2">{data.restaurant.description}</p>
                     )}
+
+                    {/* Google Maps Integration
+                    {(data.restaurant.address || data.restaurant.google_maps_url) && (
+                        <div className="mt-6 mb-2">
+                            <GoogleMapEmbed
+                                address={data.restaurant.address}
+                                restaurantName={data.restaurant.name}
+                            />
+                            {data.restaurant.google_maps_url && (
+                                <a
+                                    href={data.restaurant.google_maps_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-3 w-full bg-white/10 hover:bg-white/20 text-white rounded-xl py-3 px-4 flex items-center justify-center gap-2 font-medium transition-colors border border-white/20 backdrop-blur-sm shadow-soft"
+                                >
+                                    📍 Get Directions
+                                </a>
+                            )}
+                        </div>
+                    )}
+                    */}
                 </div>
             </div>
 

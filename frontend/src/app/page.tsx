@@ -47,14 +47,14 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
-            <Link href="/register" className="btn-primary text-lg px-10 py-4">
-              Start Free Trial
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <Link href="/scan" className="btn-primary text-lg px-10 py-4 flex items-center">
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
               </svg>
+              Scan QR to Order
             </Link>
-            <Link href="/menu/demo" className="btn-secondary bg-white/5 border-white/10 text-white hover:bg-white/10 text-lg px-10 py-4">
-              View Demo Menu
+            <Link href="/register" className="btn-secondary bg-white/5 border-white/10 text-white hover:bg-white/10 text-lg px-10 py-4">
+              Restaurant Owner? Get Started
             </Link>
           </div>
         </div>

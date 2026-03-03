@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "@/lib/api";
 import { PublicMenu, CartItem, MenuItem } from "@/lib/types";
-import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+// import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 export default function CustomerMenuPage({ params }: { params: { slug: string } }) {
     const { slug } = params;

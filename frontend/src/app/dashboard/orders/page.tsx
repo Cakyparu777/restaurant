@@ -33,6 +33,13 @@ export default function OrdersPage() {
     useEffect(() => {
         fetchOrders();
 
+        // Refresh orders every 5 seconds
+        const pollInterval = setInterval(() => {
+            if (document.visibilityState === 'visible') {
+                fetchOrders();
+            }
+        }, 5000);
+
         // WebSocket for real-time updates
         if (user?.restaurant_id) {
             try {
@@ -42,7 +49,11 @@ export default function OrdersPage() {
                 ws.onmessage = (event) => {
                     const data = JSON.parse(event.data);
                     if (data.type === "new_order") {
-                        setOrders((prev) => [data.order, ...prev]);
+                        setOrders((prev) => {
+                            // Prevent duplicates if REST API and WebSocket both send the order
+                            if (prev.find(o => o.id === data.order.id)) return prev;
+                            return [data.order, ...prev];
+                        });
                     } else if (data.type === "order_status_update") {
                         setOrders((prev) =>
                             prev.map((o) => (o.id === data.order.id ? data.order : o))
@@ -63,7 +74,10 @@ export default function OrdersPage() {
             }
         }
 
-        return () => wsRef.current?.close();
+        return () => {
+            clearInterval(pollInterval);
+            wsRef.current?.close();
+        };
     }, [user?.restaurant_id]);
 
     const updateStatus = async (orderId: string, newStatus: OrderStatus) => {
